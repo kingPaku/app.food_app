@@ -400,19 +400,19 @@ class ChatController extends GetxController implements GetxService {
         _pickedVideoFile = null;
         _pickedWebVideoFile = null;
 
-        platformFile?.forEach((element) async {
-          if(_getFileSizeFromPlatformFileToDouble(element) > AppConstants.maxSizeOfASingleFile) {
-            _singleFIleCrossMaxLimit = true;
-          } else {
-            if(objFile.length < AppConstants.maxLimitOfTotalFileSent){
-              if((await _getMultipleFileSizeFromPlatformFiles(objFile) + _getFileSizeFromPlatformFileToDouble(element)) < AppConstants.maxLimitOfFileSentINConversation){
-                objFile.add(element.xFile);
+        if (platformFile != null) {
+          platformFile.forEach((element) async {
+            if (_getFileSizeFromPlatformFileToDouble(element) > AppConstants.maxSizeOfASingleFile) {
+              _singleFIleCrossMaxLimit = true;
+            } else {
+              if (objFile.length < AppConstants.maxLimitOfTotalFileSent) {
+                if ((await _getMultipleFileSizeFromPlatformFiles(objFile) + _getFileSizeFromPlatformFileToDouble(element)) < AppConstants.maxLimitOfFileSentINConversation) {
+                  objFile.add(element.xFile);
+                }
               }
-              // objFile.add(element.xFile);
             }
-
-          }
-        });
+          });
+        }
       }
 
       _isSendButtonActive = true;

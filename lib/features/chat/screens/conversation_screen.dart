@@ -307,7 +307,7 @@ class _ConversationScreenState extends State<ConversationScreen>  with TickerPro
                     Get.find<ChatController>().getConversationList(1, type: Get.find<ChatController>().type);
 
                   } else {
-                    showCustomSnackBar('${type!.tr} ${'not_found'.tr}');
+                    showCustomSnackBar('${type != null ? type.tr : ''} ${'not_found'.tr}');
                   }
                 },
                 highlightColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.1),
@@ -326,7 +326,7 @@ class _ConversationScreenState extends State<ConversationScreen>  with TickerPro
                       Row(children: [
                         user != null ? Text(
                           '${user.fName} ${user.lName}', style: robotoMedium,
-                        ) : Text('${type!.tr} ${'deleted'.tr}', style: robotoMedium),
+                        ) : Text('${type != null ? type.tr : ''} ${'deleted'.tr}', style: robotoMedium),
 
                         GetBuilder<ProfileController>(builder: (profileController) {
                           return (profileController.userInfoModel != null && profileController.userInfoModel!.userInfo != null

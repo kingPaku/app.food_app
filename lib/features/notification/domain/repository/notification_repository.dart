@@ -31,8 +31,10 @@ class NotificationRepository implements NotificationRepositoryInterface {
       list = sharedPreferences.getStringList(AppConstants.notificationIdList);
     }
     List<int> notificationIdList = [];
-    for (var id in list!) {
-      notificationIdList.add(jsonDecode(id));
+    if (list != null) {
+      for (var id in list) {
+        notificationIdList.add(jsonDecode(id));
+      }
     }
     return notificationIdList;
   }
@@ -78,7 +80,7 @@ class NotificationRepository implements NotificationRepositoryInterface {
         }
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
+        if (cacheResponseData != null) {
           notificationList = [];
           jsonDecode(cacheResponseData).forEach((notification) {
             notificationList!.add(NotificationModel.fromJson(notification));

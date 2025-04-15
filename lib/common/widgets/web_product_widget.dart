@@ -156,9 +156,9 @@ class WebProductWidget extends StatelessWidget {
                                   PriceConverter.convertPrice(product!.price, discount: discount, discountType: discountType),
                                   style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeExtraSmall), textDirection: TextDirection.ltr,
                                 ),
-                                SizedBox(width: discount! > 0 ? Dimensions.paddingSizeExtraSmall : 0),
+                                SizedBox(width: (discount != null && discount > 0) ? Dimensions.paddingSizeExtraSmall : 0),
 
-                                discount > 0 ? Text(
+                                discount != null && discount > 0 ? Text(
                                   PriceConverter.convertPrice(product!.price),
                                   style: robotoMedium.copyWith(
                                     fontSize: Dimensions.fontSizeExtraSmall,

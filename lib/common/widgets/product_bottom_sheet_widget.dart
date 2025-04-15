@@ -68,10 +68,8 @@ class _ProductBottomSheetWidgetState extends State<ProductBottomSheetWidget> {
     }
 
     String? warning = Get.find<ProductController>().checkOutOfStockVariationSelected(product?.variations);
-    if(warning != null) {
-      showCustomSnackBar(warning);
-    }
-    if(product != null && product!.variations!.isEmpty) {
+    showCustomSnackBar(warning);
+      if(product != null && product!.variations!.isEmpty) {
       Get.find<ProductController>().setExistInCart(product!);
     }
   }

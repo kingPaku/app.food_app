@@ -70,13 +70,13 @@ class CampaignRepository implements CampaignRepositoryInterface {
         }
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          itemCampaignList = [];
+        itemCampaignList = [];
+        if (cacheResponseData != null) {
           jsonDecode(cacheResponseData).forEach((campaign) {
             itemCampaignList!.add(Product.fromJson(campaign));
           });
         }
-    }
+          }
     return itemCampaignList;
   }
 

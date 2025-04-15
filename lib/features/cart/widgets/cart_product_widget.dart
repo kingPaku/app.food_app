@@ -140,9 +140,9 @@ class CartProductWidget extends StatelessWidget {
                                       PriceConverter.convertPrice(cart.product!.price, discount: discount, discountType: discountType),
                                       style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall), textDirection: TextDirection.ltr,
                                     ),
-                                    SizedBox(width: discount! > 0 ? Dimensions.paddingSizeExtraSmall : 0),
+                                    SizedBox(width: (discount != null && discount > 0) ? Dimensions.paddingSizeExtraSmall : 0),
 
-                                    discount > 0 ? Text(
+                                    discount != null && discount > 0 ? Text(
                                       PriceConverter.convertPrice(cart.product!.price), textDirection: TextDirection.ltr,
                                       style: robotoMedium.copyWith(color: Theme.of(context).disabledColor, fontSize: Dimensions.fontSizeSmall, decoration: TextDecoration.lineThrough),
                                     ) : const SizedBox(),

@@ -108,10 +108,10 @@ class RestaurantRepository implements RestaurantRepositoryInterface {
         }
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
+        if (cacheResponseData != null) {
           restaurantModel = RestaurantModel.fromJson(jsonDecode(cacheResponseData));
         }
-    }
+          }
     return restaurantModel;
   }
 
@@ -145,13 +145,12 @@ class RestaurantRepository implements RestaurantRepositoryInterface {
         }
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          latestRestaurantList = [];
+        if (cacheResponseData != null) {
           jsonDecode(cacheResponseData).forEach((restaurant) {
             latestRestaurantList!.add(Restaurant.fromJson(restaurant));
           });
         }
-    }
+          }
     return latestRestaurantList;
   }
 
@@ -171,13 +170,12 @@ class RestaurantRepository implements RestaurantRepositoryInterface {
         }
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          popularRestaurantList = [];
+        if (cacheResponseData != null) {
           jsonDecode(cacheResponseData).forEach((restaurant) {
             popularRestaurantList!.add(Restaurant.fromJson(restaurant));
           });
         }
-    }
+          }
 
     return popularRestaurantList;
   }
@@ -198,13 +196,12 @@ class RestaurantRepository implements RestaurantRepositoryInterface {
         }
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          recentlyViewedRestaurantList = [];
+        if (cacheResponseData != null) {
           jsonDecode(cacheResponseData).forEach((restaurant) {
             recentlyViewedRestaurantList!.add(Restaurant.fromJson(restaurant));
           });
         }
-    }
+          }
     return recentlyViewedRestaurantList;
   }
 
@@ -224,13 +221,12 @@ class RestaurantRepository implements RestaurantRepositoryInterface {
         }
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
-          orderAgainRestaurantList = [];
+        if (cacheResponseData != null) {
           jsonDecode(cacheResponseData).forEach((restaurant) {
             orderAgainRestaurantList!.add(Restaurant.fromJson(restaurant));
           });
         }
-    }
+          }
     return orderAgainRestaurantList;
   }
 

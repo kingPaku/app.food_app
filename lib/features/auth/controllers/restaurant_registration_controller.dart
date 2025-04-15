@@ -1,4 +1,3 @@
-import 'package:stackfood_multivendor/features/business/controllers/business_controller.dart';
 import 'package:stackfood_multivendor/features/business/domain/models/package_model.dart';
 import 'package:stackfood_multivendor/features/dashboard/controllers/dashboard_controller.dart';
 import 'package:stackfood_multivendor/features/splash/controllers/splash_controller.dart';
@@ -256,16 +255,12 @@ class RestaurantRegistrationController extends GetxController implements GetxSer
       Get.find<DashboardController>().saveRegistrationSuccessfulSharedPref(true);
       int? restaurantId = response.body['restaurant_id'];
       int? packageId = response.body['package_id'];
-      if(packageId == null) {
-        Get.find<BusinessController>().submitBusinessPlan(restaurantId: restaurantId!, packageId: null);
+      if(!GetPlatform.isWeb) {
+        Get.toNamed(RouteHelper.getSubscriptionPaymentRoute(restaurantId: restaurantId, packageId: packageId));
       } else {
-        if(!GetPlatform.isWeb) {
-          Get.toNamed(RouteHelper.getSubscriptionPaymentRoute(restaurantId: restaurantId, packageId: packageId));
-        } else {
-          Get.offNamed(RouteHelper.getSubscriptionPaymentRoute(restaurantId: restaurantId, packageId: packageId));
-        }
+        Get.offNamed(RouteHelper.getSubscriptionPaymentRoute(restaurantId: restaurantId, packageId: packageId));
       }
-    }
+        }
     _isLoading = false;
     update();
   }

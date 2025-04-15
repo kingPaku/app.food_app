@@ -147,7 +147,7 @@ class _WebConversationListViewWidgetState extends State<WebConversationListViewW
 
                               user != null ? Text(
                                 '${user?.fName} ${user?.lName}', style: robotoMedium,
-                              ) : Text('${type!.tr} ${'deleted'.tr}', style: robotoMedium),
+                              ) : Text('${type != null ? type.tr : ''} ${'deleted'.tr}', style: robotoMedium),
                               const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
                               widget.conversation!.conversations![index]!.lastMessage != null ? Text(

@@ -1,4 +1,3 @@
-
 import 'package:stackfood_multivendor/common/widgets/validate_check.dart';
 import 'package:stackfood_multivendor/features/profile/controllers/profile_controller.dart';
 import 'package:stackfood_multivendor/features/splash/controllers/splash_controller.dart';
@@ -115,7 +114,7 @@ class _WalletBottomSheetState extends State<LoyaltyBottomSheetWidget> {
                           Get.back();
                         }
                         showCustomSnackBar('${'please_exchange_more_then'.tr} $minimumExchangePoint ${'points'.tr}');
-                      }else if(point! < amount){
+                      }else if(point != null && point < amount){
                         if(Get.isBottomSheetOpen!){
                           Get.back();
                         }

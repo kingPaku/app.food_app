@@ -42,10 +42,10 @@ class CuisineRepository implements CuisineRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
+        if (cacheResponseData != null) {
           cuisineModel = CuisineModel.fromJson(jsonDecode(cacheResponseData));
         }
-    }
+          }
 
     return cuisineModel;
   }

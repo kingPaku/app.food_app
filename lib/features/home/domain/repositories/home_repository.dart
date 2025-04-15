@@ -31,10 +31,10 @@ class HomeRepository implements HomeRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
+        if (cacheResponseData != null) {
           bannerModel = BannerModel.fromJson(jsonDecode(cacheResponseData));
         }
-    }
+          }
 
     return bannerModel;
   }
@@ -57,13 +57,13 @@ class HomeRepository implements HomeRepositoryInterface {
 
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
+        if (cacheResponseData != null) {
           cashBackModelList = [];
           jsonDecode(cacheResponseData).forEach((data) {
             cashBackModelList!.add(CashBackModel.fromJson(data));
           });
         }
-    }
+          }
     return cashBackModelList;
   }
 

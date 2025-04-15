@@ -354,8 +354,8 @@ class OrderController extends GetxController implements GetxService {
 
   Future<void> getOrderCancelReasons()async {
     List<CancellationData>? reasons = await orderServiceInterface.getCancelReasons();
+    _orderCancelReasons = [];
     if (reasons != null) {
-      _orderCancelReasons = [];
       _orderCancelReasons!.addAll(reasons);
     }
     update();
@@ -477,36 +477,34 @@ class OrderController extends GetxController implements GetxService {
 
     List<int?> foodIds = orderServiceInterface.prepareFoodIds(orderedFoods);
     List<Product>? responseFoods = await orderServiceInterface.getFoodsFromFoodIds(foodIds);
-    if (responseFoods != null) {
-      _canReorder = true;
-      List<Product> foods = responseFoods;
+    _canReorder = true;
+    List<Product> foods = responseFoods ?? [];
 
-      List<OnlineCart> onlineCartList = orderServiceInterface.prepareOnlineCartList(restaurantZoneId, orderedFoods, foods);
-      List<CartModel> offlineCartList = orderServiceInterface.prepareOfflineCartList(restaurantZoneId, orderedFoods, foods);
+    List<OnlineCart> onlineCartList = orderServiceInterface.prepareOnlineCartList(restaurantZoneId, orderedFoods, foods);
+    List<CartModel> offlineCartList = orderServiceInterface.prepareOfflineCartList(restaurantZoneId, orderedFoods, foods);
 
-      _canReorder = AddressHelper.getAddressFromSharedPref()!.zoneIds!.contains(restaurantZoneId);
-      _reorderMessage = !_canReorder ? 'you_are_not_in_the_order_zone' : '';
+    _canReorder = AddressHelper.getAddressFromSharedPref()!.zoneIds!.contains(restaurantZoneId);
+    _reorderMessage = !_canReorder ? 'you_are_not_in_the_order_zone' : '';
 
-      if(_canReorder) {
-        _canReorder = await orderServiceInterface.checkProductVariationHasChanged(offlineCartList);
-        _reorderMessage = !_canReorder ? 'this_ordered_products_are_updated_so_can_not_reorder_this_order' : '';
-      }
-
-      _isLoading = false;
-      update();
-
-      if(_canReorder) {
-        await Get.find<CartController>().reorderAddToCart(onlineCartList).then((statusCode) {
-          if(statusCode == 200) {
-            Get.toNamed(RouteHelper.getCartRoute(fromReorder: true));
-          }
-        });
-      }else{
-        showCustomSnackBar(_reorderMessage.tr);
-      }
-
+    if(_canReorder) {
+      _canReorder = await orderServiceInterface.checkProductVariationHasChanged(offlineCartList);
+      _reorderMessage = !_canReorder ? 'this_ordered_products_are_updated_so_can_not_reorder_this_order' : '';
     }
 
+    _isLoading = false;
+    update();
+
+    if(_canReorder) {
+      await Get.find<CartController>().reorderAddToCart(onlineCartList).then((statusCode) {
+        if(statusCode == 200) {
+          Get.toNamed(RouteHelper.getCartRoute(fromReorder: true));
+        }
+      });
+    }else{
+      showCustomSnackBar(_reorderMessage.tr);
+    }
+
+  
   }
 
 

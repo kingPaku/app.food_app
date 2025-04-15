@@ -560,7 +560,7 @@ class RouteHelper {
     }else if(GetPlatform.isIOS) {
       minimumVersion = Get.find<SplashController>().configModel!.appMinimumVersionIos;
     }
-    return AppConstants.appVersion < minimumVersion! ? const UpdateScreen(isUpdate: true)
+    return AppConstants.appVersion < (minimumVersion ?? 0) ? const UpdateScreen(isUpdate: true)
         : MaintenanceHelper.isMaintenanceEnable() ? const UpdateScreen(isUpdate: false)
         : (AddressHelper.getAddressFromSharedPref() == null && !byPuss)
         ? AccessLocationScreen(fromSignUp: false, fromHome: false, route: Get.currentRoute) : navigateTo;

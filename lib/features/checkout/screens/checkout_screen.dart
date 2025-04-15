@@ -462,9 +462,9 @@ class CheckoutScreenState extends State<CheckoutScreen> {
       charge = charge + checkoutController.extraCharge!;
     }
 
-    if(maximumCharge != null && deliveryCharge > maximumCharge){
-      deliveryCharge = maximumCharge;
-      charge = maximumCharge;
+    if(deliveryCharge > (maximumCharge ?? double.infinity)){
+      deliveryCharge = maximumCharge ?? deliveryCharge;
+      charge = maximumCharge ?? charge;
     }
 
     if(restaurant.selfDeliverySystem == 0 && zoneData.increasedDeliveryFeeStatus == 1){

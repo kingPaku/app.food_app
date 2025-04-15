@@ -353,7 +353,7 @@ class _ConversationListViewWidgetState extends State<ConversationListViewWidget>
                     ));
 
                   }else {
-                    showCustomSnackBar('${type!.tr} ${'not_found'.tr}');
+                    showCustomSnackBar('${type != null ? type.tr : ''} ${'not_found'.tr}');
                   }
                 },
                 highlightColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.1),
@@ -372,11 +372,11 @@ class _ConversationListViewWidgetState extends State<ConversationListViewWidget>
 
                         user != null ? Text(
                           '${user.fName} ${user.lName}', style: robotoMedium,
-                        ) : Text('${type!.tr} ${'deleted'.tr}', style: robotoMedium),
+                        ) : Text('${type != null ? type.tr : ''} ${'deleted'.tr}', style: robotoMedium),
                         const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
                         user != null ? Text(
-                          type!.tr,
+                          '${type != null ? type.tr : ''}',
                           style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
                         ) : const SizedBox(),
                       ])),

@@ -28,7 +28,7 @@ class AdvertisementRepository implements AdvertisementRepositoryInterface {
         }
       case DataSourceEnum.local:
         String? cacheResponseData = await LocalClient.organize(DataSourceEnum.local, cacheId, null, null);
-        if(cacheResponseData != null) {
+        if (cacheResponseData != null) {
           advertisementList = [];
           jsonDecode(cacheResponseData).forEach((data) {
             advertisementList?.add(AdvertisementModel.fromJson(data));

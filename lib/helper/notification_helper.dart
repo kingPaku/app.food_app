@@ -131,10 +131,22 @@ class NotificationHelper {
         try{
           await showBigPictureNotificationHiddenLargeIcon(title, body, orderID, notificationBody, image, fln);
         }catch(e) {
-          await showBigTextNotification(title, body!, orderID, notificationBody, fln);
+          await showBigTextNotification(
+            title ?? 'Notification',
+            body ?? '',
+            orderID ?? '',
+            notificationBody,
+            fln
+          );
         }
       }else {
-        await showBigTextNotification(title, body!, orderID, notificationBody, fln);
+        await showBigTextNotification(
+          title ?? 'Notification',
+          body ?? '',
+          orderID ?? '',
+          notificationBody,
+          fln
+        );
       }
     }
   }

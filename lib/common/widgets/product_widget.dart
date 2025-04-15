@@ -103,7 +103,7 @@ class ProductWidget extends StatelessWidget {
                 child: Row(children: [
 
                   Stack(clipBehavior: Clip.none, children: [
-                    ((image != null && image.isNotEmpty) || isRestaurant) ? ClipRRect(
+                    ((image?.isNotEmpty ?? false) || isRestaurant) ? ClipRRect(
                       borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                       child: CustomImageWidget(
                         image: '${isRestaurant ? restaurant!.logoFullUrl : product!.imageFullUrl}',
@@ -116,15 +116,15 @@ class ProductWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                       ),
                     ),
-                    ((image != null && image.isNotEmpty) || isRestaurant) ? DiscountTagWidget(
+                    ((image?.isNotEmpty ?? false) || isRestaurant) ? DiscountTagWidget(
                       discount: discount, discountType: discountType,
                       freeDelivery: isRestaurant ? restaurant!.freeDelivery : false,
                       fromTop: Dimensions.paddingSizeExtraSmall, fromLeft: isAvailable ? -7 : -3, paddingVertical: ResponsiveHelper.isDesktop(context) ? 5 : 10,
                     ) : const SizedBox(),
                     isAvailable ? const SizedBox() : NotAvailableWidget(
                       isRestaurant: isRestaurant,
-                      opacity: ((image != null && image.isNotEmpty) || isRestaurant) ? 0.6 : 0.15,
-                      color: ((image != null && image.isNotEmpty) || isRestaurant) ? Colors.white : Colors.black,
+                      opacity: ((image?.isNotEmpty ?? false) || isRestaurant) ? 0.6 : 0.15,
+                      color: ((image?.isNotEmpty ?? false) || isRestaurant) ? Colors.white : Colors.black,
                     ),
                   ]),
                   const SizedBox(width: Dimensions.paddingSizeSmall),
@@ -210,7 +210,7 @@ class ProductWidget extends StatelessWidget {
                         ],
                       ) : Wrap(children: [
 
-                        discount! > 0 ? Text(
+                        discount != null && discount > 0 ? Text(
                           PriceConverter.convertPrice(product!.price), textDirection: TextDirection.ltr,
                           style: robotoMedium.copyWith(
                             fontSize: Dimensions.fontSizeExtraSmall,
@@ -218,7 +218,7 @@ class ProductWidget extends StatelessWidget {
                             decoration: TextDecoration.lineThrough,
                           ),
                         ) : const SizedBox(),
-                        SizedBox(width: discount> 0 ? Dimensions.paddingSizeExtraSmall : 0),
+                        SizedBox(width: (discount != null && discount > 0) ? Dimensions.paddingSizeExtraSmall : 0),
 
                         Text(
                           PriceConverter.convertPrice(product!.price, discount: discount, discountType: discountType),
@@ -226,7 +226,7 @@ class ProductWidget extends StatelessWidget {
                         ),
                         const SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
-                        (image != null && image.isNotEmpty) ? const SizedBox.shrink() : DiscountTagWithoutImageWidget(discount: discount, discountType: discountType,
+                        (image?.isNotEmpty ?? false) ? const SizedBox.shrink() : DiscountTagWithoutImageWidget(discount: discount, discountType: discountType,
                             freeDelivery: isRestaurant ? restaurant!.freeDelivery : false),
 
                       ]),

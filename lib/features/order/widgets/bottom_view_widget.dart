@@ -69,21 +69,20 @@ class BottomViewWidget extends StatelessWidget {
                   Get.dialog(ConfirmationDialogWidget(
                       icon: Images.warning, description: 'are_you_sure_to_switch'.tr,
                       onYesPressed: () {
-                        double maxCodOrderAmount = AddressHelper.getAddressFromSharedPref()!.zoneData!.firstWhere((data) => data.id == order.restaurant!.zoneId).maxCodOrderAmount
-                            ?? 0;
+                        double? maxCodOrderAmount = AddressHelper.getAddressFromSharedPref()!.zoneData!.firstWhere((data) => data.id == order.restaurant!.zoneId).maxCodOrderAmount;
 
-                        if(maxCodOrderAmount > total){
+                        if ((maxCodOrderAmount ?? 0) > total) {
                           orderController.switchToCOD(order.id.toString(), null).then((isSuccess) {
                             Get.back();
-                            if(isSuccess) {
+                            if (isSuccess) {
                               Get.back();
                             }
                           });
-                        }else{
-                          if(Get.isDialogOpen!) {
+                        } else {
+                          if (Get.isDialogOpen!) {
                             Get.back();
                           }
-                          showCustomSnackBar('${'you_cant_order_more_then'.tr} ${PriceConverter.convertPrice(maxCodOrderAmount)} ${'in_cash_on_delivery'.tr}');
+                          showCustomSnackBar('${'you_cant_order_more_then'.tr} ${PriceConverter.convertPrice(maxCodOrderAmount ?? 0)} ${'in_cash_on_delivery'.tr}');
                         }
                       }
                   ));
@@ -191,18 +190,18 @@ class BottomViewWidget extends StatelessWidget {
                   onYesPressed: () {
                     double? maxCodOrderAmount = AddressHelper.getAddressFromSharedPref()!.zoneData!.firstWhere((data) => data.id == order.restaurant!.zoneId).maxCodOrderAmount;
 
-                    if(maxCodOrderAmount == null || maxCodOrderAmount > total){
+                    if ((maxCodOrderAmount ?? 0) > total) {
                       orderController.switchToCOD(order.id.toString(), null).then((isSuccess) {
                         Get.back();
-                        if(isSuccess) {
+                        if (isSuccess) {
                           Get.back();
                         }
                       });
-                    }else{
-                      if(Get.isDialogOpen!) {
+                    } else {
+                      if (Get.isDialogOpen!) {
                         Get.back();
                       }
-                      showCustomSnackBar('${'you_cant_order_more_then'.tr} ${PriceConverter.convertPrice(maxCodOrderAmount)} ${'in_cash_on_delivery'.tr}');
+                      showCustomSnackBar('${'you_cant_order_more_then'.tr} ${PriceConverter.convertPrice(maxCodOrderAmount ?? 0)} ${'in_cash_on_delivery'.tr}');
                     }
                   }
               ));

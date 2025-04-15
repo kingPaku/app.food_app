@@ -157,7 +157,7 @@ class OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBind
             }
           }
           double subTotal = itemsPrice + addOns;
-          double total = itemsPrice + addOns - discount! + (taxIncluded! ? 0 : tax!) + deliveryCharge! - couponDiscount! + dmTips! + additionalCharge + extraPackagingCharge - referrerBonusAmount;
+          double total = itemsPrice + addOns - (discount ?? 0) + (taxIncluded == true ? 0 : (tax ?? 0)) + (deliveryCharge ?? 0) - (couponDiscount ?? 0) + (dmTips ?? 0) + additionalCharge + extraPackagingCharge - referrerBonusAmount;
 
         return Scaffold(
             appBar: (subscription || isDineIn) && !ResponsiveHelper.isDesktop(context) ? AppBar(
@@ -233,8 +233,8 @@ class OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBind
                         const SizedBox(width: Dimensions.paddingSizeLarge),
 
                         Expanded(flex: 4,child: OrderPricingSection(
-                          itemsPrice: itemsPrice, addOns: addOns, order: order, subTotal: subTotal, discount: discount,
-                          couponDiscount: couponDiscount, tax: tax!, dmTips: dmTips, deliveryCharge: deliveryCharge,
+                          itemsPrice: itemsPrice, addOns: addOns, order: order, subTotal: subTotal, discount: discount ?? 0,
+                          couponDiscount: couponDiscount ?? 0, tax: tax ?? 0, dmTips: dmTips ?? 0, deliveryCharge: deliveryCharge ?? 0,
                           total: total, orderController: orderController, orderId: widget.orderId, contactNumber: widget.contactNumber,
                           extraPackagingAmount: extraPackagingCharge, referrerBonusAmount: referrerBonusAmount,
                         ))
@@ -246,8 +246,8 @@ class OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBind
                         contactNumber: widget.contactNumber, totalAmount: total),
 
                       OrderPricingSection(
-                        itemsPrice: itemsPrice, addOns: addOns, order: order, subTotal: subTotal, discount: discount,
-                        couponDiscount: couponDiscount, tax: tax!, dmTips: dmTips, deliveryCharge: deliveryCharge,
+                        itemsPrice: itemsPrice, addOns: addOns, order: order, subTotal: subTotal, discount: discount ?? 0,
+                        couponDiscount: couponDiscount ?? 0, tax: tax ?? 0, dmTips: dmTips ?? 0, deliveryCharge: deliveryCharge ?? 0,
                         total: total, orderController: orderController, orderId: widget.orderId, contactNumber: widget.contactNumber,
                         extraPackagingAmount: extraPackagingCharge, referrerBonusAmount: referrerBonusAmount,
                       ),
