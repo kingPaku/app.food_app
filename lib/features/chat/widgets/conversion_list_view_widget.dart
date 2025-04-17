@@ -376,7 +376,7 @@ class _ConversationListViewWidgetState extends State<ConversationListViewWidget>
                         const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
                         user != null ? Text(
-                          '${type != null ? type.tr : ''}',
+                          type != null ? type.tr : '',
                           style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
                         ) : const SizedBox(),
                       ])),
