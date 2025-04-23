@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="background_color">#FFFFFF</color>
+    <string name="app_name">StackFood</string>
+    <string name="com.google.firebase.crashlytics.mapping_file_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">00000000000000000000000000000000</string>
+    <string name="default_web_client_id" translatable="false">491987943015-agln6biv84krpnngdphj87jkko7r9lb8.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">452131619626499</string>
+    <string name="facebook_client_token">4379128133d6e049b12ed8e65224cb22</string>
+    <string name="fb_login_protocol_scheme">fb452131619626499</string>
+    <string name="gcm_defaultSenderId" translatable="false">491987943015</string>
+    <string name="google_api_key" translatable="false">AIzaSyCc3OCd5I2xSlnftZ4bFAbuCzMhgQHLivA</string>
+    <string name="google_app_id" translatable="false">1:491987943015:android:555e8c84d567150b8f1ec2</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCc3OCd5I2xSlnftZ4bFAbuCzMhgQHLivA</string>
+    <string name="google_storage_bucket" translatable="false">stackmart-500c7.appspot.com</string>
+    <string name="project_id" translatable="false">stackmart-500c7</string>
+    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        
+        <item name="android:windowBackground">@drawable/launch_background</item>
+    </style>
+    <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+</resources>

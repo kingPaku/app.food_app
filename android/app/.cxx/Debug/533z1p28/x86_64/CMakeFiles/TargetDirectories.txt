@@ -1,0 +1,2 @@
+C:/Users/LICORNE/Documents/GitHub/app.food_app/android/app/.cxx/Debug/533z1p28/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/LICORNE/Documents/GitHub/app.food_app/android/app/.cxx/Debug/533z1p28/x86_64/CMakeFiles/rebuild_cache.dir
