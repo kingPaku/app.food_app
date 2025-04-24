@@ -1,6 +1,6 @@
 plugins {
     id "com.android.application"
-    id "org.jetbrains.kotlin.android" // <-- corrige le nom ici
+    id "org.jetbrains.kotlin.android" // ← c'est le bon nom, tu avais raison de le noter
     id "dev.flutter.flutter-gradle-plugin"
     id "com.google.gms.google-services"
     id "com.google.firebase.crashlytics"
@@ -58,6 +58,9 @@ android {
     }
 
     signingConfigs {
+        debug {
+            // Configuration de debug par défaut, utile pour flutter run
+        }
         release {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
@@ -67,8 +70,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
         release {
-            signingConfig signingConfigs.debug // ← à changer plus tard si tu veux signer en release
+            signingConfig signingConfigs.release // ← prêt pour les builds signés en prod
+            shrinkResources false
+            minifyEnabled false
         }
     }
 }
@@ -82,3 +90,13 @@ dependencies {
     implementation "com.google.firebase:firebase-messaging:23.4.1"
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 }
+android.applicationVariants.all { variant ->
+    variant.outputs.all { output ->
+        if (variant.buildType.name == "debug") {
+            output.outputFileName = "app-debug.apk"
+        } else if (variant.buildType.name == "release") {
+            output.outputFileName = "app-release.apk"
+        }
+    }
+}
+;
